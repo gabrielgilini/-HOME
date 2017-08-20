@@ -1,0 +1,63 @@
+[user]
+  name = Gabriel Gilini
+  email = gabrielgilini@gmail.com
+[alias]
+  # pretty logs
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  last = log -1 --abbrev-commit --pretty=oneline
+  # View the SHA, description, and history graph of the latest 20 commits
+  l = log --abbrev-commit --pretty=oneline -n 20 --graph
+  # View the current working tree status using the short format
+  s = status -s
+  # Diff
+  d = diff --patch-with-stat
+  # Pull in remote changes for the current repository and all its submodules
+  p = !"git pull; git submodule foreach git pull origin master"
+  # Clone a repository including all submodules
+  c = clone --recursive
+  # Commit all changes
+  ca = !git add . && git add -u && git commit -a
+  # Switch to a branch, creating it if necessary
+  go = checkout -B
+  # Undo a `git push`
+  undopush = push -f origin HEAD^:master
+
+  # Delete current branch
+  rmbranch = update-ref -d HEAD
+
+  # Undo merge
+  undomerge = reset --hard HEAD@{1}
+[core]
+  excludesfile = /Users/gilini/.gitignore
+  whitespace = space-before-tab,indent-with-non-tab,trailing-space
+  editor = vim
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+  ui = auto
+[apply]
+  # Detect whitespace errors when applying a patch
+  whitespace = fix
+[merge]
+  # Include summaries of merged commits in newly created merge commit messages
+  log = true
+  summary = true
+
+# URL shorthands
+[url "git@github.com:"]
+  insteadOf = "gh:"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+[url "git://github.com/"]
+  insteadOf = "github:"
+[url "git@gist.github.com:"]
+  insteadOf = "gst:"
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+[push]
+	default = simple
